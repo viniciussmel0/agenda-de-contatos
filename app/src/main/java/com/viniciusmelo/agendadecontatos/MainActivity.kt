@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                 startDestination = "listaContatos"
             ) {
                 composable("listaContatos") {
-                    ListaContatos()
+                    ListaContatos(navController)
                 }
                 composable("salvarContato") {
                     SalvarContato()
