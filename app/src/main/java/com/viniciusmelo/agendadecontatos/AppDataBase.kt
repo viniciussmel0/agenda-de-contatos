@@ -13,20 +13,24 @@ abstract class AppDataBase : RoomDatabase() {
 
     abstract fun contatoDao(): ContatoDao
 
-    @Volatile private var INSTANCE: AppDataBase ?= null
+    companion object {
 
-    fun getInstance(context: Context): AppDataBase {
-        return INSTANCE ?: synchronized(this) {
-            val instance = Room.databaseBuilder(
-                context.applicationContext,
-                AppDataBase::class.java,
-                Constantes.DB_CONTATOS
-            ).build()
+        @Volatile private var INSTANCE: AppDataBase ?= null
 
-            INSTANCE = instance
-            instance
+        fun getInstance(context: Context): AppDataBase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDataBase::class.java,
+                    Constantes.DB_CONTATOS
+                ).build()
 
+                INSTANCE = instance
+                instance
+
+            }
         }
+
     }
 
 }
